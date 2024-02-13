@@ -16,7 +16,7 @@ description.addEventListener("keyup", () => {
 });
 
 
-submit.addEventListener('click', () => {
+submit.addEventListener('click', (event) => {
     event.preventDefault(); // Empêcher l'envoi du formulaire par défaut
     verificationDataForm();
 });
