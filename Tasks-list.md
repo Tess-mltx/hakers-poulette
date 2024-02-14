@@ -30,13 +30,13 @@
 
 - Établir une connexion PDO pour la base de données.
 
-### Validation côté client avec JavaScript
+### Validation côté client avec JavaScript DONE
 
 - Implémenter la validation côté client pour une meilleure expérience utilisateur (UX).
 - Utiliser des bibliothèques telles que Bulma, Tailwind, Bootstrap, etc.
 - Afficher des indices visuels en cas d'erreur sous chaque champ d'entrée en cas de saisie incorrecte.
 
-### Validation côté serveur
+### Validation côté serveur DONE
 
 - Sanitiser et valider les données côté serveur.
 - Afficher des messages d'erreur lisibles et utiles en cas d'erreur.
