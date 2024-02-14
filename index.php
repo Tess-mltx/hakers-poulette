@@ -11,7 +11,7 @@ require('connect.php');
 </head>
 <body>
 	<h1>Create profile</h1>
-	<form action="create_user.php" method="post">
+	<form action="create_user.php" method="post" enctype="multipart/form-data>
 		<div>
 			<label for="fistname">Firstname</label>
 			<input type="text" name="firstname" id="firstname" value="" required minlength="2" maxlength="255">
@@ -25,7 +25,8 @@ require('connect.php');
 		
 		<div>
 			<label for="file">Picture's profile</label>
-            <input type="file" name="file" id="file" accept="image/png, image/jpeg, .gif" required/>		</div>
+            <input type="file" name="file" id="file" accept="image/png, image/jpeg, .gif" required/>		
+        </div>
 
 		<div>
 			<label for="description">Description</label>

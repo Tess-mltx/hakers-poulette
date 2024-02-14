@@ -16,10 +16,10 @@ description.addEventListener("keyup", () => {
 });
 
 
-submit.addEventListener('click', (event) => {
-    event.preventDefault(); // Empêcher l'envoi du formulaire par défaut
-    verificationDataForm();
-});
+// submit.addEventListener('click', (event) => {
+//     event.preventDefault(); // Empêcher l'envoi du formulaire par défaut
+//     verificationDataForm();
+// });
 
 function verificationDataForm() {
     //  function to verify form
