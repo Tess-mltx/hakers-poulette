@@ -1,7 +1,7 @@
 const firstname = document.querySelector('#firstname');
 const lastname = document.getElementById('lastname');
 const email = document.getElementById('email');
-const avatar = document.getElementById('avatar');
+const avatar = document.getElementById('file');
 const description = document.getElementById('description');
 const submit = document.querySelector('#button')
 
@@ -15,25 +15,17 @@ description.addEventListener("keyup", () => {
     verificationText(description, 2, 1000);
 });
 
-
-submit.addEventListener('click', () => {
-    event.preventDefault(); // Empêcher l'envoi du formulaire par défaut
-    verificationDataForm();
+avatar.addEventListener('change', () => {
+    verificationAvatar(avatar);
 });
 
-function verificationDataForm() {
-    //  function to verify form
-    verificationText(firstname, 2, 255);
-    verificationText(lastname, 2, 255);
-    verificationText(description, 2, 1000);
-    verificationEmail();
-    verificationAvatar();
-};
+email.addEventListener("keyup", () => {
+    verificationEmail(email);
+});
 
 function verificationText(input, min, max) {
     let precedErrorMsg = input.parentElement.querySelectorAll('.error-msg');
     precedErrorMsg.forEach(msg => msg.remove());
-    console.log(input.value); // Ajoutez cette ligne de log pour voir la valeur de l'input
 
     if (input.value.length < min || input.value.length > max) {
         const selectedInput = input;
@@ -44,10 +36,34 @@ function verificationText(input, min, max) {
     }
 };
 
-function verificationEmail() {
-    
+function verificationEmail(email) {
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))
+    {
+      return (true)
+    } else { // je devrais créer une fct showMessage pour etre plus prorpe
+      console.log("invalid email address")
+      return (false)
+    }
 };
 
-function verificationAvatar() {
-    if (avatar );
+function verificationAvatar(avatar) {
+    var validTypes = ['.jpeg', '.png', '.gif'];
+
+    if (avatar.files.length > 0) {
+        for (const i = 0; i <= avatar.files.length - 1; i++) {
+
+            const fsize = avatar.files.item(i).size;
+            const file = Math.round((fsize / 1024));
+            // plus grand que 2MB
+            if (file > 2048) {
+                alert(
+                    "File too Big, please select a file less than 4mb");
+
+            } else {
+                console.log(file + 'KB');
+                return validTypes.includes(avatar.type);
+            }
+        }
+    }
+
 };
