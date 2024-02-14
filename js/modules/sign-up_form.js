@@ -1,7 +1,7 @@
 const firstname = document.querySelector('#firstname');
 const lastname = document.getElementById('lastname');
 const email = document.getElementById('email');
-const avatar = document.getElementById('avatar');
+const avatar = document.getElementById('file');
 const description = document.getElementById('description');
 const submit = document.querySelector('#button')
 

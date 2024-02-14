@@ -11,7 +11,7 @@ require('connect.php');
 </head>
 <body>
 	<h1>Create profile</h1>
-	<form action="create_user.php" method="post" enctype="multipart/form-data>
+	<form action="create_user.php" method="post" enctype="multipart/form-data" >
 		<div>
 			<label for="fistname">Firstname</label>
 			<input type="text" name="firstname" id="firstname" value="" required minlength="2" maxlength="255">
