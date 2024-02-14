@@ -36,8 +36,10 @@ require('connect.php');
 				</label>
 			</div>
 			<button class="button__submit" type="submit" name="button" id="button">Send</button>
+			<h2>TEST</h2>
 		</form>
 	</div>
+
 </body>
 
 </html>
