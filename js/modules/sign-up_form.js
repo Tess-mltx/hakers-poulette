@@ -19,19 +19,9 @@ avatar.addEventListener('change', () => {
     verificationAvatar(avatar);
 });
 
-// submit.addEventListener('click', (event) => {
-//     event.preventDefault(); // Empêcher l'envoi du formulaire par défaut
-//     verificationDataForm();
-// });
-
-function verificationDataForm() {
-    //  function to verify form
-    verificationText(firstname, 2, 255);
-    verificationText(lastname, 2, 255);
-    verificationText(description, 2, 1000);
-    verificationEmail();
-    verificationAvatar();
-};
+email.addEventListener("keyup", () => {
+    verificationEmail(email);
+});
 
 function verificationText(input, min, max) {
     let precedErrorMsg = input.parentElement.querySelectorAll('.error-msg');
@@ -46,8 +36,14 @@ function verificationText(input, min, max) {
     }
 };
 
-function verificationEmail() {
-
+function verificationEmail(email) {
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))
+    {
+      return (true)
+    } else { // je devrais créer une fct showMessage pour etre plus prorpe
+      console.log("invalid email address")
+      return (false)
+    }
 };
 
 function verificationAvatar(avatar) {
