@@ -25,7 +25,7 @@ require('connect.php');
 		
 		<div>
 			<label for="file">Picture's profile</label>
-            <input type="file" name="file" id="file" accept="image/png, image/jpeg, .gif"/>		
+            <input type="file" name="file" id="file" accept=".png, .jpeg, .gif"/>		
         </div>
 
 		<div>

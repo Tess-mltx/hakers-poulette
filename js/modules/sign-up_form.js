@@ -15,6 +15,9 @@ description.addEventListener("keyup", () => {
     verificationText(description, 2, 1000);
 });
 
+avatar.addEventListener('change', () => {
+    verificationAvatar(avatar);
+});
 
 // submit.addEventListener('click', (event) => {
 //     event.preventDefault(); // Empêcher l'envoi du formulaire par défaut
@@ -33,7 +36,6 @@ function verificationDataForm() {
 function verificationText(input, min, max) {
     let precedErrorMsg = input.parentElement.querySelectorAll('.error-msg');
     precedErrorMsg.forEach(msg => msg.remove());
-    console.log(input.value); // Ajoutez cette ligne de log pour voir la valeur de l'input
 
     if (input.value.length < min || input.value.length > max) {
         const selectedInput = input;
@@ -45,9 +47,27 @@ function verificationText(input, min, max) {
 };
 
 function verificationEmail() {
-    
+
 };
 
-function verificationAvatar() {
-    if (avatar );
+function verificationAvatar(avatar) {
+    var validTypes = ['.jpeg', '.png', '.gif'];
+
+    if (avatar.files.length > 0) {
+        for (const i = 0; i <= avatar.files.length - 1; i++) {
+
+            const fsize = avatar.files.item(i).size;
+            const file = Math.round((fsize / 1024));
+            // plus grand que 2MB
+            if (file > 2048) {
+                alert(
+                    "File too Big, please select a file less than 4mb");
+
+            } else {
+                console.log(file + 'KB');
+                return validTypes.includes(avatar.type);
+            }
+        }
+    }
+
 };
