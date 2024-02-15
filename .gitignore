@@ -1,14 +1,4 @@
 node_modules/
-
-Logs
-logs
-.log
-npm-debug.log
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
-
 node_modules
 dist
 dist-ssr
@@ -24,3 +14,7 @@ Editor directories and files
 *.njsproj
 *.sln
 *.sw?
+
+/vendor/
+
+.env
