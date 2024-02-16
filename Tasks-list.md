@@ -51,11 +51,11 @@
 
 ## 🌼 Fonctionnalités optionnelles
 
-### Confirmation par e-mail
+### Confirmation par e-mail [OK mais doit être relié au form]
 
 - Si toutes les saisies obligatoires sont valides, le script doit répondre par e-mail à une adresse spécifiée, confirmant la réception du message.
 
-### Utilisation de Composer
+### Utilisation de Composer DONE
 
 - Découvrir Composer et l'utiliser pour installer une bibliothèque PHP telle que SwiftMailer, rakit/validation, valitron ou symfony/mailer.
 
