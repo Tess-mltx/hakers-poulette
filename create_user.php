@@ -1,5 +1,6 @@
 <?php
 require('connect.php');
+require('send_email.php');
 
 if (isset($_POST['button'])) {
         $firstname = isset($_POST['firstname']) ? $_POST['firstname'] : '';
@@ -8,16 +9,14 @@ if (isset($_POST['button'])) {
         $avatar = isset($_FILES['file']) ? $_FILES['file'] : '';
         $description = isset($_POST['description']) ? $_POST['description'] : '';        
 
-        $target_dir = "assets/avatars_users/";
-        $target_file = $target_dir . basename($_FILES['file']['name']);
-        $uploadOk = 1; // ca c'est un score pour vérifier que l'img est ok
-        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-
-        if (!empty($firstname) && !empty($lastname) && !empty($email) && !empty($description)){
-            
+        if (!empty($firstname) && !empty($lastname) && !empty($email) && !empty($description)){    
             if (filter_var($email, FILTER_VALIDATE_EMAIL)) { // J'ajoute la validation mail cross figer !
                 echo "Email address '$email' is considered valid.\n";
                 if (!empty($avatar['name']) && $avatar['error'] === UPLOAD_ERR_OK) { // completer la condition si le file a load dans le form
+                    $target_dir = "assets/avatars_users/";
+                    $target_file = $target_dir . basename($_FILES['file']['name']);
+                    $uploadOk = 1; // ca c'est un score pour vérifier que l'img est ok
+                    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
                     // Vérifier si le fichier est une image
                     $check = getimagesize($avatar["tmp_name"]); // si la methode fonctionne c'est que c'est une img
                     if($check !== false) {
@@ -45,7 +44,8 @@ if (isset($_POST['button'])) {
                 echo "Les informations ont été enregistrées dans la base de données.";
                 }
 
-                header("Location: index.php");
+                sendEmail($email, $firstname);
+                // header("Location: index.php");
                 exit();
         
             } else {
