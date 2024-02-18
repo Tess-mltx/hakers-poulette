@@ -1,13 +1,22 @@
 <?php
+require('autoload.php');
 require('connect.php');
 require('send_email.php');
 
 if (isset($_POST['button'])) {
-        $firstname = isset($_POST['firstname']) ? $_POST['firstname'] : '';
-        $lastname = isset($_POST['lastname']) ? $_POST['lastname'] : '';
-        $email = isset($_POST['email']) ? $_POST['email'] : '';
-        $avatar = isset($_POST['avatar']) ? $_POST['avatar'] : '';
-        $description = isset($_POST['description']) ? $_POST['description'] : '';        
+    $firstname = isset($_POST['firstname']) ? $_POST['firstname'] : '';
+    $lastname = isset($_POST['lastname']) ? $_POST['lastname'] : '';
+    $email = isset($_POST['email']) ? $_POST['email'] : '';
+    $avatar = isset($_POST['avatar']) ? $_POST['avatar'] : '';
+    $description = isset($_POST['description']) ? $_POST['description'] : '';
+        
+    $recaptcha = new \ReCaptcha\ReCaptcha("6LdzQ3UpAAAAAHGi9cxEJEPcBsh5-vvwlkfaaoyr");
+    $gRecaptchaResponse = $_POST['g-recaptcha-response'];
+    $resp = $recaptcha->setExpectedHostname('recaptcha-demo.appspot.com')
+                          ->verify($gRecaptchaResponse, $remoteIp);
+        
+    if ($resp->isSuccess()) {
+        echo "Success capchat !";    
 
         if (!empty($firstname) && !empty($lastname) && !empty($email) && !empty($description)){    
             if (filter_var($email, FILTER_VALIDATE_EMAIL)) { // J'ajoute la validation mail cross figer !
@@ -38,10 +47,10 @@ if (isset($_POST['button'])) {
                     }
                 } else {
             
-                $query = $bdd->prepare('INSERT INTO users (firstname, lastname, email, description) VALUES (:firstname, :lastname, :email, :description)');
-                $query->execute(array(':firstname' => $firstname, ':lastname' => $lastname, ':email' => $email, ':description' => $description));
+                    $query = $bdd->prepare('INSERT INTO users (firstname, lastname, email, description) VALUES (:firstname, :lastname, :email, :description)');
+                    $query->execute(array(':firstname' => $firstname, ':lastname' => $lastname, ':email' => $email, ':description' => $description));
 
-                echo "Les informations ont été enregistrées dans la base de données.";
+                    echo "Les informations ont été enregistrées dans la base de données.";
                 }
 
                 sendEmail($email, $firstname);
@@ -52,8 +61,12 @@ if (isset($_POST['button'])) {
                 echo "l'adresse mail '$email' est invalide.\n";
             }
 
-    } else {
+        } else {
         echo "Veuillez remplir tous les champs du formulaire.";
+        }
+    } else {
+    $errors = $resp->getErrorCodes();
+    var_dump($errors);
     }
 } 
 ?>
