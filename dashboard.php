@@ -12,7 +12,7 @@
     <a class="p-2 mt-4 m-2 rounded bg-[#252525] text-white transition duration-400 ease-in-out hover:bg-green-500" href="index.php" class="button-link">Retour à l'accueil</a>
     <?php
     // Connexion à la base de donnéess
-    $conn = new mysqli("localhost", "root", "root", "hacker-poulette");
+    $conn = new mysqli("localhost", "root", "", "hacker-poulette");
 
     // Vérifier la connexion
     if ($conn->connect_error) {
@@ -58,7 +58,7 @@
             $id = $_POST['id'];
 
             // Connexion à la base de données
-            $conn = new mysqli("localhost", "root", "root", "hacker-poulette");
+            $conn = new mysqli("localhost", "root", "", "hacker-poulette");
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
             }

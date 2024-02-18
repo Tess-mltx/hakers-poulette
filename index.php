@@ -1,5 +1,19 @@
 <?php
 require('connect.php');
+require('autoload.php');
+if (isset($_POST['button'])) {
+	$recaptcha = new \ReCaptcha\ReCaptcha("6LdzQ3UpAAAAAHGi9cxEJEPcBsh5-vvwlkfaaoyr");
+	$gRecaptchaResponse = $_POST['g-recaptcha-response'];
+	$resp = $recaptcha->setExpectedHostname('recaptcha-demo.appspot.com')
+		->verify($gRecaptchaResponse, $remoteIp);
+	if ($resp->isSuccess()) {
+		// Verified!
+		echo "Success !";
+	} else {
+		$errors = $resp->getErrorCodes();
+		var_dump($errors);
+	}
+}
 ?>
 <!DOCTYPE html>
 <div class="w-full h-full flex flex-col items-center justify-center text-aliceblue">
@@ -21,23 +35,6 @@ require('connect.php');
 				<button class="w-3/5 my-4 py-2 rounded bg-[#252525] text-white transition duration-400 ease-in-out hover:bg-green-500" type="submit" name="button" id="buttonadmin">Connect</button>
 			</div>
 		</header>
-
-		<?php
-		require_once 'autoload.php';
-		if (isset($_POST['button'])) {
-			$recaptcha = new \ReCaptcha\ReCaptcha("6LdzQ3UpAAAAAHGi9cxEJEPcBsh5-vvwlkfaaoyr");
-			$gRecaptchaResponse = $_POST['g-recaptcha-response'];
-			$resp = $recaptcha->setExpectedHostname('recaptcha-demo.appspot.com')
-				->verify($gRecaptchaResponse, $remoteIp);
-			if ($resp->isSuccess()) {
-				// Verified!
-				echo "Success !";
-			} else {
-				$errors = $resp->getErrorCodes();
-				var_dump($errors);
-			}
-		}
-		?>
 		<div class="w-full h-full flex items-center justify-center text-[aliceblue] m-0;">
 
 			<form action="create_user.php" method="post">
