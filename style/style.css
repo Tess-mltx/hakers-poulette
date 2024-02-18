@@ -51,7 +51,7 @@ h1:hover::before {
   height: 100vh;
 }
 
-table {
+.form__body {
   color: aliceblue;
   display: flex;
   flex-direction: column;
